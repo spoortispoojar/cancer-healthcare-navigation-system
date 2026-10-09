@@ -1,44 +1,39 @@
 # AI-Based Personalized Cancer Healthcare & Facility Recommendation System
 
-## 📌 Overview
+## Project Overview
 
-An AI-based healthcare navigation system designed to help breast and lung cancer patients identify relevant healthcare services and suitable facilities based on their needs, location, affordability and accessibility.
+This project aims to develop a healthcare navigation and facility recommendation system for breast and lung cancer patients. It collects structured patient information and aims to support personalized healthcare-service mapping and facility recommendations.
 
-**Note:** This project supports healthcare navigation; it does not diagnose cancer or predict treatment outcomes.
+The system is not intended to diagnose cancer, predict cancer occurrence, estimate survival, predict hospitalization, or establish that a patient is experiencing a medical emergency.
 
-## 🎯 Objectives
+## Proposed Workflow
 
-* Collect patient information through a guided assessment form.
-* Assess healthcare support needs using machine learning.
-* Consider socioeconomic factors and healthcare access barriers.
-* Recommend suitable healthcare facilities based on services, location and affordability.
+Patient Interface → Guided Assessment → Structured Patient Profile → ML-Based Healthcare Support/Urgency Assessment → Healthcare Requirement Mapping → Facility Recommendation → Explanation → Final Results.
 
-## 🔄 Workflow
+## Patient Inputs
 
-Patient Assessment → Information Processing → Support-Need Assessment → Service Mapping → Facility Recommendation → Results
+* Cancer type
+* Current treatment
+* Symptoms
+* Symptom severity
+* Symptom duration
+* City
 
-## 🛠️ Tech Stack
+## Proposed ML Output
 
-* **Frontend:** React.js, Tailwind CSS
-* **Backend:** FastAPI, Python
-* **Machine Learning:** scikit-learn
-* **Data Processing:** Pandas, NumPy
-* **Visualisation:** Matplotlib, Seaborn
-* **Model Saving:** Joblib
-* **Database:** PostgreSQL, SQLAlchemy
-* **API Testing:** Postman
-* **Version Control:** Git, GitHub
+Healthcare support/urgency category: Low, Moderate, or High.
 
-## 🚀 Project Status
+**Important:** The availability of suitable labeled data for these three categories must be established before model development. These labels will not be fabricated. If available datasets cannot support the intended classification task, the project will document that limitation and evaluate scientifically defensible alternatives with the project team.
 
-Under Development.
+## Technology Stack
 
-## 🔮 Future Scope
+* Python
+* Pandas and NumPy
+* scikit-learn
+* Matplotlib and Seaborn
+* Joblib
+* FastAPI for later integration
 
-* Multilingual interaction and NLP.
-* Expanded facility database.
-* Support for additional cancer types.
+## Current Stage
 
-## ⚠️ Disclaimer
-
-This academic prototype provides healthcare navigation support and does not replace professional medical advice, diagnosis or treatment.
+Repository setup, dataset research, and feasibility assessment.

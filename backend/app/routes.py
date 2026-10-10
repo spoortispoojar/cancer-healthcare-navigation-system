@@ -76,6 +76,13 @@ def get_assessment_recommendations(assessment: PatientAssessment):
             profile.current_treatment,
         )
 
+        for facility in facilities:
+            facility["match_reason"] = (
+                f"Located in {facility['city']}; "
+                f"supports {profile.cancer_type} cancer care "
+                f"and lists {profile.current_treatment} as a service."
+            )
+
         return {
             "patient_profile": profile.model_dump(),
             "facility_count": len(facilities),

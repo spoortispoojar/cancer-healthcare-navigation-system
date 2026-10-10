@@ -101,3 +101,5 @@ def test_assessment_recommendations():
     assert "patient_profile" in data
     assert "facilities" in data
     assert "facility_count" in data
+    if data["facilities"]:
+        assert "match_reason" in data["facilities"][0]

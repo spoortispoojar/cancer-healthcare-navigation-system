@@ -1,11 +1,12 @@
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class PatientAssessment(BaseModel):
     cancer_type: Literal["Breast", "Lung"]
+
     current_treatment: Literal[
         "Chemotherapy",
         "Radiation Therapy",
@@ -13,6 +14,7 @@ class PatientAssessment(BaseModel):
         "Immunotherapy",
         "Other",
     ]
+
     symptoms: list[
         Literal[
             "Pain",
@@ -30,6 +32,16 @@ class PatientAssessment(BaseModel):
     duration_days: int = Field(ge=0, le=36500)
     city: str = Field(min_length=2, max_length=100)
 
+    @field_validator("city")
+    @classmethod
+    def clean_city(cls, value: str) -> str:
+        value = value.strip()
+
+        if len(value) < 2:
+            raise ValueError("City must contain at least 2 characters")
+
+        return value
+
 
 class StructuredPatientProfile(BaseModel):
     cancer_type: str
@@ -38,4 +50,3 @@ class StructuredPatientProfile(BaseModel):
     severity: str
     duration_days: int
     city: str
-

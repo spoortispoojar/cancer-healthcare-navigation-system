@@ -1,0 +1,288 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  color: #193b45;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Navigation bar */
+.navbar {
+  min-height: 80px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.logo {
+  color: #147d78;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nav-label {
+  color: #475569;
+  font-size: 15px;
+}
+
+/* Homepage */
+.hero {
+  flex: 1;
+  min-height: 680px;
+  padding: 70px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #effbf8, #f1f6ff);
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin-bottom: 36px;
+  color: #147d78;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin: 0 auto 28px;
+  color: #193b45;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.description {
+  max-width: 700px;
+  margin: 0 auto 38px;
+  color: #526477;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* Buttons */
+.primary-button {
+  display: inline-block;
+  padding: 18px 32px;
+  border: none;
+  border-radius: 9px;
+  background: #147d78;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-button:hover {
+  background: #0e625e;
+}
+
+.primary-button:focus-visible,
+.back-button:focus-visible,
+.logo:focus-visible {
+  outline: 3px solid #83c9c2;
+  outline-offset: 3px;
+}
+
+.note {
+  margin: 32px auto 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Footer */
+footer {
+  padding: 25px 16px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* Assessment page */
+.assessment {
+  flex: 1;
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+}
+
+.assessment h1 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #163b45;
+  font-size: 32px;
+}
+
+.form-intro {
+  color: #526477;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  color: #147d78;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 24px;
+}
+
+.form-group > label,
+.form-group > legend {
+  font-size: 15px;
+  font-weight: 600;
+  color: #263f4a;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: 2px solid #83c9c2;
+  outline-offset: 1px;
+  border-color: #167d75;
+}
+
+.symptoms-group {
+  border: 1px solid #dbe5e7;
+  border-radius: 9px;
+  padding: 18px;
+}
+
+.symptoms-group legend {
+  padding: 0 5px;
+}
+
+.field-hint {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.symptom-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.symptom-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.symptom-option input {
+  width: 16px;
+  height: 16px;
+  accent-color: #147d78;
+}
+
+.error {
+  color: #b42318;
+  font-size: 13px;
+  margin: 0;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.form-disclaimer {
+  margin-top: 22px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  .navbar {
+    min-height: 68px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .nav-label {
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 600px;
+    padding: 50px 20px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+  }
+
+  .hero h1 {
+    letter-spacing: -0.5px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .assessment {
+    padding: 28px 18px 40px;
+  }
+
+  .symptom-grid {
+    grid-template-columns: 1fr;
+  }
+}

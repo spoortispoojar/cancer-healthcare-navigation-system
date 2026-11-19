@@ -1,31 +1,65 @@
 
-from app.database import get_db_connection
+from app.database import Base, engine, SessionLocal
+from app.models import Facility
 
 
-def create_facilities_table():
-    conn = get_db_connection()
+SAMPLE_FACILITIES = [
+    {
+        "facility_name": "Sample Cancer Care Centre",
+        "city": "Bengaluru",
+        "cancer_types": ["Breast", "Lung"],
+        "services": [
+            "Chemotherapy",
+            "Radiation Therapy",
+            "Surgery",
+            "Immunotherapy",
+        ],
+        "address": "Sample Address, Bengaluru",
+        "contact_number": None,
+        "facility_type": "Cancer Care Centre",
+    },
+    {
+        "facility_name": "Sample Oncology Hospital",
+        "city": "Mysuru",
+        "cancer_types": ["Breast", "Lung"],
+        "services": ["Chemotherapy", "Surgery"],
+        "address": "Sample Address, Mysuru",
+        "contact_number": None,
+        "facility_type": "Hospital",
+    },
+]
+
+
+def initialize_database():
+    # Create missing tables without dropping existing tables.
+    Base.metadata.create_all(bind=engine)
+
+    db = SessionLocal()
 
     try:
-        with conn.cursor() as cursor:
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS facilities (
-                    id SERIAL PRIMARY KEY,
-                    facility_name VARCHAR(200) NOT NULL,
-                    city VARCHAR(100) NOT NULL,
-                    cancer_types TEXT[] NOT NULL,
-                    services TEXT[] NOT NULL,
-                    address TEXT NOT NULL,
-                    contact_number VARCHAR(20),
-                    facility_type VARCHAR(50)
-                );
-            """)
+        for facility_data in SAMPLE_FACILITIES:
+            existing_facility = (
+                db.query(Facility)
+                .filter_by(
+                    facility_name=facility_data["facility_name"],
+                    city=facility_data["city"],
+                )
+                .first()
+            )
 
-        conn.commit()
-        print("Facilities table created successfully!")
+            if existing_facility is None:
+                db.add(Facility(**facility_data))
+
+        db.commit()
+        print("Database initialization completed successfully.")
+
+    except Exception:
+        db.rollback()
+        raise
 
     finally:
-        conn.close()
+        db.close()
 
 
 if __name__ == "__main__":
-    create_facilities_table()
+    initialize_database()

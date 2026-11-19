@@ -1,4 +1,5 @@
-
+import sys
+from pathlib import Path
 from typing import Callable
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -16,18 +17,26 @@ router = APIRouter()
 
 def get_support_predictor():
     """
-    The real ML predictor will be connected in Phase 9.
-    No fabricated prediction is returned.
+    Load and return the actual trained ML prediction function.
     """
 
-    def unavailable_predictor(patient_data):
+    project_root = Path(__file__).resolve().parents[2]
+
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+
+    try:
+        from src.ml.predict_support import predict_support_requirement
+        return predict_support_requirement
+
+    except Exception as exc:
         raise HTTPException(
             status_code=503,
-            detail="ML model integration is not yet available."
-        )
-
-    return unavailable_predictor
-
+            detail=(
+                "ML predictor could not be loaded. "
+                "Check the model file and ML dependencies."
+            )
+        ) from exc
 
 
 @router.post("/assessment")

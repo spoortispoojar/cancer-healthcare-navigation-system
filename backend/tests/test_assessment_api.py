@@ -51,8 +51,7 @@ def valid_assessment_payload():
         "patient": patient
     }
 
-
-def test_assessment_returns_503_without_real_ml_model(
+def test_assessment_uses_real_ml_predictor(
     valid_assessment_payload
 ):
     with TestClient(app) as client:
@@ -61,9 +60,16 @@ def test_assessment_returns_503_without_real_ml_model(
             json=valid_assessment_payload
         )
 
-    assert response.status_code == 503
-    assert "ML model integration" in response.json()["detail"]
+    assert response.status_code == 200
 
+    result = response.json()
+
+    assert result["status"] == "success"
+    assert result["support_requirement"] in {
+        "Low", "Moderate", "High"
+    }
+    assert isinstance(result["support_services"], list)
+    assert isinstance(result["recommended_facilities"], list)
 
 def test_assessment_rejects_invalid_patient_input(
     valid_assessment_payload

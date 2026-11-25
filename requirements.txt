@@ -6,3 +6,7 @@ matplotlib
 seaborn
 joblib
 jupyter
+SQLAlchemy
+psycopg[binary]
+python-dotenv
+pytest

@@ -28,3 +28,10 @@ data/processed/*
 
 # Editor
 .vscode/
+
+# Local backups and temporary files
+backups/
+data/raw_old
+data/raw_empty_backup/
+sync_preview.txt
+src/recommendation_backup.py
